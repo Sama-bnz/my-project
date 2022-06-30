@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 //        }
 //    }
 //Creation de la classe
-    class PageController
+    class PageController extends AbstractController
     {
         /**
          * Je crée la route contact

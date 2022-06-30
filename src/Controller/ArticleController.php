@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Controller;
+//name space est un alias de chemin  c'est à dire que le chemin de la classe est src/Controller
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
     //Je crée ma route
     /**
@@ -49,6 +51,10 @@ class ArticleController
         return new Response($article['title'] . " " . $article['contenu']);
 
     }
+    //Pour débuguer ses routes en utilisant la ligne de commandes:
+    //se placer dans le projet en ligne de commande
+    //et taper "php bin/conseol debug:router
+
 
     /**
      * @Route("/article/{id}", name="article_show_wildcard")
@@ -61,27 +67,28 @@ class ArticleController
     public function showArticleWildcard($id)
     {
 
-        // fake requête SQL "SELECT * FROM article";
+        //requete SQL "SELECT" * FROM article";
+        //Je crée mon objet
         $articles = [
             1 => [
                 'title' => 'La canicule, il fait chaud',
-                'content' => 'je transpire'
+                'contenu' => 'je transpire'
             ],
             2 => [
                 'title' => 'Fin des moteurs thermiques en 2035',
-                'content' => 'BROUM'
+                'contenu' => 'BROUM'
             ],
             3 => [
                 'title' => "L'alcool c'est pas cool",
-                'content' => "Pourquoi y'a cool dans alcool ?"
+                'contenu' => "Pourquoi y'a cool dans alcool ?"
             ]
         ];
 
-        // trouver dans la liste des articles l'article qui correspond à l'id récupéré
+        // Je crée une variable qui cible la clé du tableau correspondant à l'id
         $article = $articles[$id];
 
-        // afficher son titre en réponse
-        return new Response($article['title']);
+        // afficher son titre et son contenu en réponse
+        return new Response($article['title'] . " " . $article['contenu']);
 
     }
 }
